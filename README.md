@@ -1,4 +1,4 @@
-# 🎯 Info Tracker 🔥
+# 🎯 InfoX-Tool 🔥
 
 <p align="center">  
   <img src="https://img.shields.io/badge/Version-2.0.0-blue" alt="Version">  
@@ -95,24 +95,24 @@ termux-setup-storage
 **Method 1: Clone Repository**
 
 ```bash
-git clone [repository-link]
-cd Fake-Tracker
-python3 Fake-Tracker.py
+git clone https://github.com/sudip-sarkar-git/InfoX-Tool.git
+cd InfoX-Tool
+python3 InfoX-Tool.py
 ```
 
 **Method 2: Direct Download**
 
 ```bash
-curl -O [repository-link]
-python3 Fake-Tracker.py
+curl -O https://github.com/sudip-sarkar-git/InfoX-Tool.git
+python3 InfoX-Tool.py
 ```
 
 **Method 3: Manual Creation**
 
 ```bash
-nano fake_tracker.py
+nano InfoX-Tool.py
 # Copy the code and save (Ctrl+X, Y, Enter)
-python3 fake_tracker.py
+python3 InfoX-Tool.py
 ```
 
 ---
@@ -122,7 +122,7 @@ python3 fake_tracker.py
 **Step 1: Run the Tool**
 
 ```bash
-python3 Fake-Tracker.py
+python3 InfoX-Tool.py
 ```
 
 **Step 2: Choose Tunnel Option**
@@ -173,8 +173,8 @@ python3 Fake-Tracker.py
 1. **Tool not running:**
 
 ```bash
-chmod +x Fake-Tracker.py
-python3 Fake-Tracker.py
+chmod +x InfoX-Tool.py
+python3 InfoX-Tool.py
 ```
 
 2. **Missing dependencies:**
@@ -200,7 +200,7 @@ termux-storage-get /sdcard
 
 ```bash
 pkill -f python
-python3 Fake-Tracker.py
+python3 InfoX-Tool.py
 ```
 
 ---
@@ -256,7 +256,7 @@ python3 Fake-Tracker.py
 
 ```bash
 # Start tool
-python3 Fake-Tracker.py
+python3 InfoX-Tool.py
 
 # Update tool
 git pull origin main
@@ -265,7 +265,7 @@ git pull origin main
 pip install -r requirements.txt
 
 # Fix permissions
-chmod +x Fake-Tracker.py
+chmod +x InfoX-Tool.py
 
 # Clear cache
 rm -rf reports.csv reward_qr.png
@@ -325,6 +325,4 @@ THIS TOOL IS FOR LEGAL SECURITY TESTING AND EDUCATIONAL PURPOSES ONLY. USERS ARE
 
 ---
 
-© 2025 Fake Tracker | Developed by Ꮥᴜᴅɪᴩ々Ꮥᴀʀᴋᴀʀ
-
----
+© 2025 InfoX-Tool | Developed by Ꮥᴜᴅɪᴩ々Ꮥᴀʀᴋᴀʀ
